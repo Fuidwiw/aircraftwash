@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ozark Aircraft Wash Pricing</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f4f7fb;
+      color: #1f2937;
+    }
+
+    .container {
+      max-width: 850px;
+      margin: auto;
+      padding: 24px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 18px;
+      padding: 24px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      margin-bottom: 6px;
+      font-size: 32px;
+      color: #0f172a;
+    }
+
+    h2 {
+      margin-top: 0;
+      color: #1e40af;
+    }
+
+    .subtitle {
+      color: #64748b;
+      margin-bottom: 22px;
+    }
+
+    label {
+      font-weight: bold;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    select {
+      width: 100%;
+      padding: 14px;
+      font-size: 16px;
+      border-radius: 10px;
+      border: 1px solid #cbd5e1;
+      margin-bottom: 20px;
+    }
+
+    .price-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 14px 0;
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    .price-row:last-child {
+      border-bottom: none;
+    }
+
+    .service {
+      font-weight: bold;
+    }
+
+    .description {
+      font-size: 14px;
+      color: #64748b;
+      margin-top: 4px;
+      line-height: 1.4;
+    }
+
+    .price {
+      font-size: 20px;
+      font-weight: bold;
+      color: #0f766e;
+      white-space: nowrap;
+    }
+
+    .button {
+      display: block;
+      text-align: center;
+      background: #1e40af;
+      color: white;
+      padding: 16px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: bold;
+      margin-top: 22px;
+    }
+
+    .note {
+      font-size: 13px;
+      color: #64748b;
+      line-height: 1.5;
+    }
+
+    .category-box {
+      background: #eff6ff;
+      border-left: 5px solid #1e40af;
+      padding: 14px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      font-size: 14px;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 26px;
+      }
+
+      .price-row {
+        flex-direction: column;
+      }
+
+      .price {
+        font-size: 22px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="card">
+      <h1>Ozark Aircraft Wash</h1>
+      <p class="subtitle">Aircraft washing, detailing, and monthly maintenance pricing.</p>
+
+      <label for="aircraft">Select Aircraft Type</label>
+      <select id="aircraft" onchange="updatePrices()">
+        <option value="single">Single Engine</option>
+        <option value="twin">Twin Piston</option>
+        <option value="turboprop">Turbo Prop</option>
+        <option value="vlj">Very Light Jet</option>
+        <option value="lightjet">Light Jet</option>
+      </select>
+
+      <div id="categoryInfo" class="category-box"></div>
+    </div>
+
+    <div class="card">
+      <h2>Service Pricing</h2>
+      <div id="pricing"></div>
+    </div>
+
+    <div class="card">
+      <h2>Add-On Services</h2>
+      <div id="addons"></div>
+    </div>
+
+    <div class="card">
+      <h2>Monthly Maintenance Plan</h2>
+      <div id="maintenance"></div>
+    </div>
+
+    <div class="card">
+      <h2>Request Service</h2>
+      <p class="note">
+        Pricing may vary for heavily soiled aircraft, excessive oil/grease, neglected paint, oxidation,
+        unusual access issues, or travel outside normal service areas.
+      </p>
+
+      <a class="button" href="tel:417-989-0976">Call To Schedule</a>
+    </div>
+  </div>
+
+  <script>
+    const data = {
+      single: {
+        name: "Single Engine",
+        examples: "Examples: Cessna 172, Piper Cherokee, Cirrus SR20, Beech Bonanza",
+        basic: "$275",
+        full: "$750",
+        interior: "$250",
+        ceramic: "$350",
+        maintenance: "$175/month",
+        belly: "$75",
+        wax: "$100",
+        monthlyInterior: "$150"
+      },
+      twin: {
+        name: "Twin Piston",
+        examples: "Examples: Baron, Seneca, Twin Comanche, Cessna 310",
+        basic: "$425",
+        full: "$1,200",
+        interior: "$400",
+        ceramic: "$550",
+        maintenance: "$300/month",
+        belly: "$125",
+        wax: "$175",
+        monthlyInterior: "$250"
+      },
+      turboprop: {
+        name: "Turbo Prop",
+        examples: "Examples: King Air, Pilatus PC-12, TBM, Piper Meridian",
+        basic: "$650",
+        full: "$2,000",
+        interior: "$700",
+        ceramic: "$850",
+        maintenance: "$500/month",
+        belly: "$200",
+        wax: "$300",
+        monthlyInterior: "$400"
+      },
+      vlj: {
+        name: "Very Light Jet",
+        examples: "Very Light Jet means a small entry-level jet. Examples: Citation Mustang, Phenom 100, HondaJet, Eclipse 500",
+        basic: "$850",
+        full: "$3,000",
+        interior: "$1,000",
+        ceramic: "$1,250",
+        maintenance: "$700/month",
+        belly: "$300",
+        wax: "$450",
+        monthlyInterior: "$500"
+      },
+      lightjet: {
+        name: "Light Jet",
+        examples: "Examples: Citation CJ series, Lear 31/35, Phenom 300",
+        basic: "$1,250",
+        full: "$4,500",
+        interior: "$1,500",
+        ceramic: "$1,800",
+        maintenance: "$1,000/month",
+        belly: "$450",
+        wax: "$600",
+        monthlyInterior: "$600"
+      }
+    };
+
+    function row(title, desc, price) {
+      return `
+        <div class="price-row">
+          <div>
+            <div class="service">${title}</div>
+            <div class="description">${desc}</div>
+          </div>
+          <div class="price">${price}</div>
+        </div>
+      `;
+    }
+
+    function updatePrices() {
+      const selected = document.getElementById("aircraft").value;
+      const item = data[selected];
+
+      document.getElementById("categoryInfo").innerHTML =
+        `<strong>${item.name}</strong><br>${item.examples}`;
+
+      document.getElementById("pricing").innerHTML =
+        row("Basic Exterior Wash", "Wash, bug removal, windows cleaned, light belly cleaning, dry by hand.", item.basic) +
+        row("Full Exterior Wash", "Wash, bug removal, belly degrease, quick wax, windows, brightwork touch-up.", item.full) +
+        row("Interior Cleaning", "Vacuum, leather clean, and instrument cleaning with non-static cleaner.", item.interior);
+
+      document.getElementById("addons").innerHTML =
+        row("Spray-On Ceramic Coat", "Approximately 6 months of protection.", item.ceramic) +
+        row("Polishing All Metal / Brightwork", "Metal polishing and brightwork restoration.", "Quote Required");
+
+      document.getElementById("maintenance").innerHTML =
+        row("Monthly Maintenance", "Wash, bug removal, windows, and exterior wipe-down.", item.maintenance) +
+        row("Add Belly Degrease", "Monthly plan add-on.", item.belly) +
+        row("Add Quick Wax", "Monthly plan add-on.", item.wax) +
+        row("Add Interior Clean", "Monthly plan add-on.", item.monthlyInterior);
+    }
+
+    updatePrices();
+  </script>
+
+</body>
+</html>

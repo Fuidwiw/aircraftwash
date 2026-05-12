@@ -187,6 +187,8 @@
   </div>
 
   <script>
+  const showFullCeramic = false;
+  
     const data = {
       single: {
         name: "Single Engine",
@@ -194,7 +196,8 @@
         basic: "$275",
         full: "$750",
         interior: "$250",
-        ceramic: "$350",
+        spry_ceramic: "$350",
+		coat: "$2000",
         maintenance: "$175/month",
         belly: "$75",
         wax: "$100",
@@ -206,7 +209,8 @@
         basic: "$425",
         full: "$1,200",
         interior: "$400",
-        ceramic: "$550",
+        spry_ceramic: "$550",
+		coat: "$3,500",
         maintenance: "$300/month",
         belly: "$125",
         wax: "$175",
@@ -218,7 +222,8 @@
         basic: "$650",
         full: "$2,000",
         interior: "$700",
-        ceramic: "$850",
+        spry_ceramic: "$850",
+		coat: "$6,000",
         maintenance: "$500/month",
         belly: "$200",
         wax: "$300",
@@ -230,7 +235,8 @@
         basic: "$850",
         full: "$3,000",
         interior: "$1,000",
-        ceramic: "$1,250",
+        spry_ceramic: "$1,250",
+		coat: "$9,000",
         maintenance: "$700/month",
         belly: "$300",
         wax: "$450",
@@ -242,7 +248,8 @@
         basic: "$1,250",
         full: "$4,500",
         interior: "$1,500",
-        ceramic: "$1,800",
+        spry_ceramic: "$1,800",
+		coat: "$15,000",
         maintenance: "$1,000/month",
         belly: "$450",
         wax: "$600",
@@ -274,9 +281,20 @@
         row("Full Exterior Wash", "Wash, bug removal, belly degrease, quick wax, windows, brightwork touch-up.", item.full) +
         row("Interior Cleaning", "Vacuum, leather clean, and instrument cleaning with non-static cleaner.", item.interior);
 
-      document.getElementById("addons").innerHTML =
-        row("Spray-On Ceramic Coat", "Approximately 6 months of protection.", item.ceramic) +
-        row("Polishing All Metal / Brightwork", "Metal polishing and brightwork restoration.", "Quote Required");
+		document.getElementById("addons").innerHTML =
+		  row("Spray-On Ceramic Protection",
+		  "Approximately 6 months of protection.",
+		  item.spray_ceramic) +
+
+		  (showFullCeramic
+			? row("Full Ceramic Coating",
+			  "Professional paint correction and ceramic coating package.",
+			  item.coat)
+			: "") +
+
+		  row("Polishing All Metal / Brightwork",
+		  "Metal polishing and brightwork restoration.",
+		  "Quote Required");
 
       document.getElementById("maintenance").innerHTML =
         row("Monthly Maintenance", "Wash, bug removal, windows, and exterior wipe-down.", item.maintenance) +

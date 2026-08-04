@@ -50,6 +50,8 @@
             {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Mobile aircraft washing"}},
             {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Waterless aircraft washing"}},
             {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Deionized-water wet washing"}},
+            {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Aircraft belly cleaning"}},
+            {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Aircraft bug removal"}},
             {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Aircraft interior cleaning"}},
             {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Aircraft spray ceramic protection"}},
             {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Monthly aircraft appearance maintenance"}}
@@ -76,7 +78,10 @@
       <a class="nav-logo" href="/" aria-current="page">Ozark Aircraft Wash</a>
       <ul class="nav-links">
         <li><a href="/">Home</a></li>
-        <li><a href="#services">Services</a></li>
+        <li><a href="/services/">Services</a></li>
+        <li><a href="/aircraft/">Aircraft</a></li>
+        <li><a href="/airports/">Airports</a></li>
+        <li><a href="/resources/">Resources</a></li>
         <li><a href="#pricing-section">Pricing</a></li>
         <li><a href="#gallery">Gallery</a></li>
         <li><a href="#quote">Quote</a></li>
@@ -104,9 +109,14 @@
       </section>
 
       <section class="card" id="services" aria-labelledby="services-heading">
-        <h2 id="services-heading">Aircraft Care Services</h2>
-        <p class="subtitle">Choose a service based on aircraft condition, location, facility rules, and owner preference.</p>
-        <div class="grid">
+        <div class="section-heading-row"><div><h2 id="services-heading">Aircraft Care Services</h2><p class="subtitle">Choose a service based on aircraft condition, location, facility rules, and owner preference.</p></div><a class="button" href="/services/">Explore All Services</a></div>
+        <div class="grid service-summary-grid">
+          <article class="service-card">
+            <span class="tag">Exterior Overview</span>
+            <h3>Aircraft Washing</h3>
+            <p class="note">Compare mobile exterior wash options, contamination considerations, aircraft categories, access, and quote preparation.</p>
+            <a href="/services/aircraft-washing/">Explore aircraft washing services</a>
+          </article>
           <article class="service-card">
             <span class="tag">Low Water</span>
             <h3>Waterless Wash</h3>
@@ -117,6 +127,7 @@
             <span class="tag">DI Water</span>
             <h3>Wet Wash</h3>
             <p class="note">A gentle low-pressure wash using deionized water, aircraft-cleaning products, hand washing, bug removal, and a spot-reduced final rinse.</p>
+            <a href="/services/wet-aircraft-washing/">Learn about wet aircraft washing</a>
           </article>
           <article class="service-card">
             <span class="tag">Temporary Protection</span>
@@ -124,6 +135,22 @@
             <p class="note">A temporary protective finish designed to improve gloss, slickness, bug release, and short-term paint protection after cleaning.</p>
             <a href="/aircraft-ceramic-protection/">Learn about spray ceramic protection</a>
           </article>
+        </div>
+        <nav class="compact-service-links" aria-label="More aircraft services">
+          <a href="/services/aircraft-belly-cleaning/">Belly cleaning</a>
+          <a href="/services/aircraft-bug-removal/">Bug removal</a>
+          <a href="/services/aircraft-interior-cleaning/">Interior cleaning</a>
+          <a href="/services/monthly-aircraft-maintenance/">Monthly maintenance</a>
+        </nav>
+      </section>
+
+      <section class="card" aria-labelledby="aircraft-categories-heading">
+        <div class="section-heading-row"><div><h2 id="aircraft-categories-heading">Aircraft Categories</h2><p class="subtitle">The pricing selector uses five general categories. Final classification and pricing depend on aircraft size, configuration, condition, access, and requested work.</p></div><a class="button" href="/aircraft/">Explore Aircraft Categories</a></div>
+        <div class="aircraft-category-grid compact-categories">
+          <article class="aircraft-category-card"><h3><a href="/aircraft/single-engine-aircraft-washing/">Single-Engine</a></h3><p>General washing and appearance-care guidance for the default pricing group.</p></article>
+          <article class="aircraft-category-card"><h3><a href="/aircraft/twin-piston-aircraft-washing/">Twin-Piston</a></h3><p>Planning for additional exterior area, engine-area residue, belly work, and access.</p></article>
+          <article class="aircraft-category-card"><h3><a href="/aircraft/turboprop-aircraft-washing/">Turboprop</a></h3><p>Condition, wet-wash logistics, cabin care, residue, travel, and scheduling.</p></article>
+          <article class="aircraft-category-card"><h3><a href="/aircraft/very-light-jet-aircraft-washing/">Very Light and Light Jets</a></h3><p>Review <a href="/aircraft/very-light-jet-aircraft-washing/">very light jet</a> and <a href="/aircraft/light-jet-aircraft-washing/">light jet</a> guidance before quoting.</p></article>
         </div>
       </section>
 
@@ -160,6 +187,8 @@
           <option value="lightjet">Light Jet</option>
         </select>
 
+        <p class="pricing-category-link"><a href="/aircraft/">Learn how aircraft categories, size, and configuration affect pricing guidance</a>.</p>
+
         <div id="categoryInfo" class="category-box" aria-live="polite">
           <strong>Single Engine</strong><br>Examples: Cessna 172, Piper Cherokee, Cirrus SR20/SR22, Beech Bonanza
         </div>
@@ -192,8 +221,13 @@
       </section>
 
       <section class="card" aria-labelledby="pages-heading">
-        <h2 id="pages-heading">Current Service Information</h2>
+        <h2 id="pages-heading">Regional and Service Information</h2>
         <div class="grid">
+          <article class="service-card">
+            <h3>Airport Service Area</h3>
+            <p class="note">Explore 18 verified Missouri and northern Arkansas airport areas. Appointments depend on travel, scheduling, facility permission, and customer-arranged access.</p>
+            <a class="button" href="/airports/">Explore airport service areas</a>
+          </article>
           <article class="service-card">
             <h3>Springfield Area</h3>
             <p class="note">Mobile aircraft washing may be available in the Springfield area where access and local rules permit.</p>
@@ -204,16 +238,17 @@
             <p class="note">Mobile aircraft washing may be available in the Branson area where access and local rules permit.</p>
             <a class="button" href="/aircraft-washing-branson-mo/">Branson service information</a>
           </article>
-          <article class="service-card">
-            <h3>Waterless Aircraft Wash</h3>
-            <p class="note">Low-water cleaning for hangared aircraft and appearance maintenance.</p>
-            <a class="button" href="/waterless-aircraft-wash/">Waterless wash information</a>
-          </article>
-          <article class="service-card">
-            <h3>Spray Ceramic Protection</h3>
-            <p class="note">Temporary gloss, slickness, and short-term paint protection.</p>
-            <a class="button" href="/aircraft-ceramic-protection/">Spray protection information</a>
-          </article>
+          <article class="service-card"><h3>Complete Services Guide</h3><p class="note">Compare all eight current services, limitations, access requirements, related options, and quote factors.</p><a class="button" href="/services/">View all current services</a></article>
+        </div>
+        <p class="note">Ozark Aircraft Wash is based in the City of Ava, not at an airport. Customers arrange aircraft and facility access, and travel charges may apply based on distance and scheduling.</p>
+      </section>
+
+      <section class="card" aria-labelledby="resources-heading">
+        <div class="section-heading-row"><div><h2 id="resources-heading">Aircraft Care Resources</h2><p class="subtitle">Practical educational guides for planning cleaning and understanding appearance-care options.</p></div><a class="button" href="/resources/">Visit the Resource Center</a></div>
+        <div class="grid">
+          <article class="service-card"><h3><a href="/resources/how-often-should-an-aircraft-be-washed/">How Often Should an Aircraft Be Washed?</a></h3><p class="note">Consider flight activity, storage, bugs, residue, weather exposure, finish guidance, and appearance expectations.</p></article>
+          <article class="service-card"><h3><a href="/resources/waterless-vs-wet-aircraft-washing/">Waterless Versus Wet Washing</a></h3><p class="note">Compare suitable contamination, products, microfiber handling, water use, facility rules, runoff, and limitations.</p></article>
+          <article class="service-card"><h3><a href="/resources/how-to-prepare-an-aircraft-for-mobile-washing/">Prepare for Mobile Aircraft Washing</a></h3><p class="note">Use the owner checklist for location, access, permission, condition, restrictions, keys, positioning, and timing.</p></article>
         </div>
       </section>
 
@@ -271,7 +306,10 @@
       <nav aria-label="Footer navigation">
         <ul class="footer-links">
           <li><a href="/">Home</a></li>
-          <li><a href="/#services">Services</a></li>
+          <li><a href="/services/">Services</a></li>
+          <li><a href="/aircraft/">Aircraft</a></li>
+          <li><a href="/airports/">Airports</a></li>
+          <li><a href="/resources/">Resources</a></li>
           <li><a href="/#pricing-section">Pricing</a></li>
           <li><a href="/#gallery">Gallery</a></li>
           <li><a href="/#quote">Quote</a></li>

@@ -1,0 +1,11 @@
+{
+  "name": "ozark-aircraft-wash",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Static Ozark Aircraft Wash website",
+  "scripts": {
+    "validate": "node scripts/validate.mjs",
+    "test": "node scripts/validate.mjs",
+    "serve": "node scripts/serve.mjs"
+  }
+}

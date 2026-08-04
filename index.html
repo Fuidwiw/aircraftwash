@@ -1,310 +1,285 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ozark Aircraft Wash Pricing</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f4f7fb;
-      color: #1f2937;
-    }
-
-    .container {
-      max-width: 850px;
-      margin: auto;
-      padding: 24px;
-    }
-
-    .card {
-      background: white;
-      border-radius: 18px;
-      padding: 24px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-      margin-bottom: 20px;
-    }
-
-    h1 {
-      margin-bottom: 6px;
-      font-size: 32px;
-      color: #0f172a;
-    }
-
-    h2 {
-      margin-top: 0;
-      color: #1e40af;
-    }
-
-    .subtitle {
-      color: #64748b;
-      margin-bottom: 22px;
-    }
-
-    label {
-      font-weight: bold;
-      display: block;
-      margin-bottom: 8px;
-    }
-
-    select {
-      width: 100%;
-      padding: 14px;
-      font-size: 16px;
-      border-radius: 10px;
-      border: 1px solid #cbd5e1;
-      margin-bottom: 20px;
-    }
-
-    .price-row {
-      display: flex;
-      justify-content: space-between;
-      gap: 16px;
-      padding: 14px 0;
-      border-bottom: 1px solid #e5e7eb;
-    }
-
-    .price-row:last-child {
-      border-bottom: none;
-    }
-
-    .service {
-      font-weight: bold;
-    }
-
-    .description {
-      font-size: 14px;
-      color: #64748b;
-      margin-top: 4px;
-      line-height: 1.4;
-    }
-
-    .price {
-      font-size: 20px;
-      font-weight: bold;
-      color: #d4af37;
-      white-space: nowrap;
-    }
-
-    .button {
-      display: block;
-      text-align: center;
-      background: #1e40af;
-      color: white;
-      padding: 16px;
-      border-radius: 12px;
-      text-decoration: none;
-      font-weight: bold;
-      margin-top: 22px;
-    }
-
-    .note {
-      font-size: 13px;
-      color: #64748b;
-      line-height: 1.5;
-    }
-
-    .category-box {
-      background: #eff6ff;
-      border-left: 5px solid #1e40af;
-      padding: 14px;
-      border-radius: 10px;
-      margin-bottom: 20px;
-      font-size: 14px;
-    }
-
-    @media (max-width: 600px) {
-      h1 {
-        font-size: 26px;
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mobile Aircraft Washing | Ava &amp; Southwest Missouri</title>
+  <meta name="description" content="Ozark Aircraft Wash provides mobile aircraft washing, interior cleaning, spray ceramic protection, and maintenance service from Ava throughout Southwest Missouri.">
+  <link rel="canonical" href="https://ozarkaircraftwash.com/">
+  <meta name="robots" content="index, follow">
+  <meta property="og:site_name" content="Ozark Aircraft Wash">
+  <meta property="og:title" content="Mobile Aircraft Washing | Ozark Aircraft Wash">
+  <meta property="og:description" content="Mobile aircraft washing and appearance care based in Ava and serving Southwest Missouri.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ozarkaircraftwash.com/">
+  <meta property="og:image" content="https://ozarkaircraftwash.com/images/og-aircraft.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Ozark Aircraft Wash illustrated aircraft and water logo">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Mobile Aircraft Washing | Ozark Aircraft Wash">
+  <meta name="twitter:description" content="Mobile aircraft washing and appearance care based in Ava and serving Southwest Missouri.">
+  <meta name="twitter:image" content="https://ozarkaircraftwash.com/images/og-aircraft.jpg">
+  <link rel="preload" as="image" type="image/avif" href="/images/ozark-aircraft-wash-logo-768.avif" imagesrcset="/images/ozark-aircraft-wash-logo-480.avif 480w, /images/ozark-aircraft-wash-logo-768.avif 768w, /images/ozark-aircraft-wash-logo-1200.avif 1200w" imagesizes="(max-width: 700px) calc(100vw - 36px), 1050px">
+  <link rel="stylesheet" href="/assets/css/site.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://ozarkaircraftwash.com/#organization",
+        "name": "Ozark Aircraft Wash",
+        "url": "https://ozarkaircraftwash.com/",
+        "telephone": "+14179890976",
+        "logo": "https://ozarkaircraftwash.com/images/hero-aircraft.jpg",
+        "image": "https://ozarkaircraftwash.com/images/og-aircraft.jpg",
+        "description": "Mobile aircraft washing and appearance care based in Ava, Missouri.",
+        "location": {
+          "@type": "Place",
+          "name": "Ava, Missouri"
+        },
+        "areaServed": [
+          {"@type": "City", "name": "Ava, Missouri"},
+          {"@type": "AdministrativeArea", "name": "Southwest Missouri"}
+        ],
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Aircraft washing and appearance-care services",
+          "itemListElement": [
+            {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Mobile aircraft washing"}},
+            {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Waterless aircraft washing"}},
+            {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Deionized-water wet washing"}},
+            {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Aircraft interior cleaning"}},
+            {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Aircraft spray ceramic protection"}},
+            {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Monthly aircraft appearance maintenance"}}
+          ]
+        }
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://ozarkaircraftwash.com/#website",
+        "url": "https://ozarkaircraftwash.com/",
+        "name": "Ozark Aircraft Wash",
+        "publisher": {"@id": "https://ozarkaircraftwash.com/#organization"},
+        "inLanguage": "en-US"
       }
-
-      .price-row {
-        flex-direction: column;
-      }
-
-      .price {
-        font-size: 22px;
-      }
-    }
-  </style>
+    ]
+  }
+  </script>
 </head>
 <body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
 
-  <div class="container">
-    <div class="card">
-      <h1>Ozark Aircraft Wash</h1>
-      <p class="subtitle">Aircraft washing, detailing, and monthly maintenance pricing.</p>
+  <header class="site-header">
+    <nav class="navbar" aria-label="Primary navigation">
+      <a class="nav-logo" href="/" aria-current="page">Ozark Aircraft Wash</a>
+      <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#pricing-section">Pricing</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#quote">Quote</a></li>
+      </ul>
+    </nav>
+  </header>
 
-      <label for="aircraft">Select Aircraft Type</label>
-      <select id="aircraft" onchange="updatePrices()">
-        <option value="single">Single Engine</option>
-        <option value="twin">Twin Piston</option>
-        <option value="turboprop">Turbo Prop</option>
-        <option value="vlj">Very Light Jet</option>
-        <option value="lightjet">Light Jet</option>
-      </select>
-
-      <div id="categoryInfo" class="category-box"></div>
-    </div>
-
-    <div class="card">
-      <h2>Service Pricing</h2>
-      <div id="pricing"></div>
-    </div>
-
-    <div class="card">
-      <h2>Add-On Services</h2>
-      <div id="addons"></div>
-    </div>
-
-    <div class="card">
-      <h2>Monthly Maintenance Plan</h2>
-      <div id="maintenance"></div>
-    </div>
-
-	<div class="card">
-	  <h2>Travel Fee</h2>
-	  <p class="note">
-		Listed prices are based on aircraft located in the Springfield, Missouri area.
-		Service at other airports may include a travel fee depending on distance, airport access,
-		job size, and scheduling availability.
-	  </p>
-	  <p class="note">
-		Travel fees will be quoted before service is scheduled.
-	  </p>
-	</div>
-
-    <div class="card">
-      <h2>Request Service</h2>
-      <p class="note">
-        Pricing may vary for heavily soiled aircraft, excessive oil/grease, neglected paint, oxidation,
-        unusual access issues, or travel outside normal service areas.
-      </p>
-
-      <a class="button" href="tel:417-989-0976">Call To Schedule</a>
-    </div>
-  </div>
-
-  <script>
-  const showFullCeramic = false;
-  
-    const data = {
-      single: {
-        name: "Single Engine",
-        examples: "Examples: Cessna 172, Piper Cherokee, Cirrus SR20, Beech Bonanza",
-        basic: "$275",
-        full: "$750",
-        interior: "$250",
-        spry_ceramic: "$350",
-		coat: "$2000",
-        maintenance: "$175/month",
-        belly: "$75",
-        wax: "$100",
-        monthlyInterior: "$150"
-      },
-      twin: {
-        name: "Twin Piston",
-        examples: "Examples: Baron, Seneca, Twin Comanche, Cessna 310",
-        basic: "$425",
-        full: "$1,200",
-        interior: "$400",
-        spry_ceramic: "$550",
-		coat: "$3,500",
-        maintenance: "$300/month",
-        belly: "$125",
-        wax: "$175",
-        monthlyInterior: "$250"
-      },
-      turboprop: {
-        name: "Turbo Prop",
-        examples: "Examples: King Air, Pilatus PC-12, TBM, Piper Meridian",
-        basic: "$650",
-        full: "$2,000",
-        interior: "$700",
-        spry_ceramic: "$850",
-		coat: "$6,000",
-        maintenance: "$500/month",
-        belly: "$200",
-        wax: "$300",
-        monthlyInterior: "$400"
-      },
-      vlj: {
-        name: "Very Light Jet",
-        examples: "Very Light Jet means a small entry-level jet. Examples: Citation Mustang, Phenom 100, HondaJet, Eclipse 500",
-        basic: "$850",
-        full: "$3,000",
-        interior: "$1,000",
-        spry_ceramic: "$1,250",
-		coat: "$9,000",
-        maintenance: "$700/month",
-        belly: "$300",
-        wax: "$450",
-        monthlyInterior: "$500"
-      },
-      lightjet: {
-        name: "Light Jet",
-        examples: "Examples: Citation CJ series, Lear 31/35, Phenom 300",
-        basic: "$1,250",
-        full: "$4,500",
-        interior: "$1,500",
-        spry_ceramic: "$1,800",
-		coat: "$15,000",
-        maintenance: "$1,000/month",
-        belly: "$450",
-        wax: "$600",
-        monthlyInterior: "$600"
-      }
-    };
-
-    function row(title, desc, price) {
-      return `
-        <div class="price-row">
-          <div>
-            <div class="service">${title}</div>
-            <div class="description">${desc}</div>
+  <main id="main-content" tabindex="-1">
+    <div class="container">
+      <section class="hero" aria-labelledby="hero-heading">
+        <picture class="hero-media" aria-hidden="true">
+          <source type="image/avif" srcset="/images/ozark-aircraft-wash-logo-480.avif 480w, /images/ozark-aircraft-wash-logo-768.avif 768w, /images/ozark-aircraft-wash-logo-1200.avif 1200w" sizes="(max-width: 700px) calc(100vw - 36px), 1050px">
+          <source type="image/webp" srcset="/images/ozark-aircraft-wash-logo-480.webp 480w, /images/ozark-aircraft-wash-logo-768.webp 768w, /images/ozark-aircraft-wash-logo-1200.webp 1200w" sizes="(max-width: 700px) calc(100vw - 36px), 1050px">
+          <img src="/images/ozark-aircraft-wash-logo.jpg" srcset="/images/ozark-aircraft-wash-logo-480.jpg 480w, /images/ozark-aircraft-wash-logo-768.jpg 768w, /images/ozark-aircraft-wash-logo-1200.jpg 1200w" sizes="(max-width: 700px) calc(100vw - 36px), 1050px" width="1200" height="1200" alt="" fetchpriority="high" decoding="async">
+        </picture>
+        <div class="hero-content">
+          <h1 id="hero-heading">Mobile Aircraft Washing Based in Ava, Missouri</h1>
+          <p>Aircraft washing, waterless cleaning, deionized-water wet washing, interior cleaning, and spray ceramic protection throughout Southwest Missouri.</p>
+          <p class="hero-trust">Mobile service · Our equipment and water supply · Call or text for a quote</p>
+          <div class="button-row">
+            <a class="button" href="tel:+14179890976">Call 417-989-0976</a>
+            <a class="button secondary" href="sms:+14179890976">Text for a Quote</a>
           </div>
-          <div class="price">${price}</div>
         </div>
-      `;
-    }
+      </section>
 
-    function updatePrices() {
-      const selected = document.getElementById("aircraft").value;
-      const item = data[selected];
+      <section class="card" id="services" aria-labelledby="services-heading">
+        <h2 id="services-heading">Aircraft Care Services</h2>
+        <p class="subtitle">Choose a service based on aircraft condition, location, facility rules, and owner preference.</p>
+        <div class="grid">
+          <article class="service-card">
+            <span class="tag">Low Water</span>
+            <h3>Waterless Wash</h3>
+            <p class="note">For hangared aircraft, light dust, bugs, and regular appearance maintenance using careful microfiber techniques.</p>
+            <a href="/waterless-aircraft-wash/">Learn about waterless aircraft washing</a>
+          </article>
+          <article class="service-card">
+            <span class="tag">DI Water</span>
+            <h3>Wet Wash</h3>
+            <p class="note">A gentle low-pressure wash using deionized water, aircraft-cleaning products, hand washing, bug removal, and a spot-reduced final rinse.</p>
+          </article>
+          <article class="service-card">
+            <span class="tag">Temporary Protection</span>
+            <h3>Spray Ceramic</h3>
+            <p class="note">A temporary protective finish designed to improve gloss, slickness, bug release, and short-term paint protection after cleaning.</p>
+            <a href="/aircraft-ceramic-protection/">Learn about spray ceramic protection</a>
+          </article>
+        </div>
+      </section>
 
-      document.getElementById("categoryInfo").innerHTML =
-        `<strong>${item.name}</strong><br>${item.examples}`;
+      <section class="card" aria-labelledby="service-model-heading">
+        <h2 id="service-model-heading">Prepared Mobile Service</h2>
+        <div class="grid">
+          <article class="service-card">
+            <h3>Equipment and Water Included</h3>
+            <p class="note">We arrive with our own aircraft-cleaning equipment, products, and water supply.</p>
+          </article>
+          <article class="service-card">
+            <h3>Aviation-Focused Products</h3>
+            <p class="note">We use RealClean Aviation Products selected for aircraft cleaning and appearance care. Please identify special coatings, finishes, or manufacturer restrictions before service.</p>
+          </article>
+          <article class="service-card">
+            <h3>Regional Travel</h3>
+            <p class="note">Mobile service is available throughout the region, with longer-distance appointments considered individually. Travel charges may apply based on distance and scheduling.</p>
+          </article>
+        </div>
+        <div class="info-box">
+          <p><strong>Aircraft and facility access:</strong> Customers are responsible for arranging aircraft and facility access. Please notify the FBO, airport, hangar operator, or facility in advance when required. Mobile washing must be allowed in the proposed work area.</p>
+        </div>
+        <p><strong>Scheduling:</strong> At least 24 hours of advance notice is preferred. Appointment availability may vary based on travel, weather, airport access, and existing commitments.</p>
+      </section>
 
-      document.getElementById("pricing").innerHTML =
-        row("Basic Exterior Wash", "Wash, bug removal, windows cleaned, light belly cleaning, dry by hand.", item.basic) +
-        row("Full Exterior Wash", "Wash, bug removal, belly degrease, quick wax, windows, brightwork touch-up.", item.full) +
-        row("Interior Cleaning", "Vacuum, leather clean, and instrument cleaning with non-static cleaner.", item.interior);
+      <section class="card" id="pricing-section" aria-labelledby="pricing-heading">
+        <h2 id="pricing-heading">Aircraft Service Pricing</h2>
+        <label for="aircraft">Select Aircraft Type</label>
+        <select id="aircraft" name="aircraft">
+          <option value="single">Single Engine</option>
+          <option value="twin">Twin Piston</option>
+          <option value="turboprop">Turboprop</option>
+          <option value="vlj">Very Light Jet</option>
+          <option value="lightjet">Light Jet</option>
+        </select>
 
-		document.getElementById("addons").innerHTML =
-		  row("Spray-On Ceramic Protection",
-		  "Approximately 6 months of protection.",
-		  item.spray_ceramic) +
+        <div id="categoryInfo" class="category-box" aria-live="polite">
+          <strong>Single Engine</strong><br>Examples: Cessna 172, Piper Cherokee, Cirrus SR20/SR22, Beech Bonanza
+        </div>
 
-		  (showFullCeramic
-			? row("Full Ceramic Coating",
-			  "Professional paint correction and ceramic coating package.",
-			  item.coat)
-			: "") +
+        <h3>Service Pricing</h3>
+        <div id="pricing">
+          <div class="price-row"><div><div class="service">Waterless Wash</div><div class="description">Low-water aircraft cleaning for light dust, bugs, regular maintenance, and hangared aircraft.</div></div><div class="price">$225</div></div>
+          <div class="price-row"><div><div class="service">Wet Wash</div><div class="description">Gentle low-pressure DI water wash, aircraft-cleaning products, bug removal, windows cleaned, and hand dry.</div></div><div class="price">$275</div></div>
+          <div class="price-row"><div><div class="service">Full Exterior Detail</div><div class="description">Wet wash, bug removal, belly degrease, quick wax or sealant, windows, and brightwork touch-up.</div></div><div class="price">$750</div></div>
+          <div class="price-row"><div><div class="service">Interior Cleaning</div><div class="description">Vacuum, leather/plastic wipe-down, cabin clean-up, and careful instrument-area cleaning.</div></div><div class="price">$250</div></div>
+        </div>
 
-		  row("Polishing All Metal / Brightwork",
-		  "Metal polishing and brightwork restoration.",
-		  "Quote Required");
+        <h3>Add-On Services</h3>
+        <div id="addons">
+          <div class="price-row"><div><div class="service">Spray Ceramic Protection</div><div class="description">Approximately 3–6 months of protection depending on aircraft use, storage, and exposure.</div></div><div class="price">$350</div></div>
+          <div class="price-row"><div><div class="service">Belly Degrease</div><div class="description">Oil, grease, and exhaust residue removal using careful aircraft-cleaning methods.</div></div><div class="price">$75</div></div>
+          <div class="price-row"><div><div class="service">Polishing / Brightwork</div><div class="description">Metal polishing and brightwork restoration. Quoted by condition.</div></div><div class="price">Quote Required</div></div>
+        </div>
 
-      document.getElementById("maintenance").innerHTML =
-        row("Monthly Maintenance", "Wash, bug removal, windows, and exterior wipe-down.", item.maintenance) +
-        row("Add Belly Degrease", "Monthly plan add-on.", item.belly) +
-        row("Add Quick Wax", "Monthly plan add-on.", item.wax) +
-        row("Add Interior Clean", "Monthly plan add-on.", item.monthlyInterior);
-    }
+        <h3>Monthly Maintenance Plan</h3>
+        <div id="maintenance">
+          <div class="price-row"><div><div class="service">Monthly Maintenance</div><div class="description">Recurring exterior maintenance wash, bug removal, windows, and wipe-down.</div></div><div class="price">$175/month</div></div>
+          <div class="price-row"><div><div class="service">Add Belly Degrease</div><div class="description">Monthly plan add-on.</div></div><div class="price">$75</div></div>
+          <div class="price-row"><div><div class="service">Add Spray Wax / Sealant</div><div class="description">Monthly plan add-on.</div></div><div class="price">$100</div></div>
+          <div class="price-row"><div><div class="service">Add Interior Clean</div><div class="description">Monthly plan add-on.</div></div><div class="price">$150</div></div>
+        </div>
 
-    updatePrices();
-  </script>
+        <p class="note"><strong>Pricing qualification:</strong> Pricing may vary based on aircraft condition, location, travel distance, access requirements, and the work requested.</p>
+        <noscript><p class="info-box">Single-engine pricing is shown above. Call or text for pricing for another aircraft category.</p></noscript>
+      </section>
 
+      <section class="card" aria-labelledby="pages-heading">
+        <h2 id="pages-heading">Current Service Information</h2>
+        <div class="grid">
+          <article class="service-card">
+            <h3>Springfield Area</h3>
+            <p class="note">Mobile aircraft washing may be available in the Springfield area where access and local rules permit.</p>
+            <a class="button" href="/aircraft-washing-springfield-mo/">Springfield service information</a>
+          </article>
+          <article class="service-card">
+            <h3>Branson Area</h3>
+            <p class="note">Mobile aircraft washing may be available in the Branson area where access and local rules permit.</p>
+            <a class="button" href="/aircraft-washing-branson-mo/">Branson service information</a>
+          </article>
+          <article class="service-card">
+            <h3>Waterless Aircraft Wash</h3>
+            <p class="note">Low-water cleaning for hangared aircraft and appearance maintenance.</p>
+            <a class="button" href="/waterless-aircraft-wash/">Waterless wash information</a>
+          </article>
+          <article class="service-card">
+            <h3>Spray Ceramic Protection</h3>
+            <p class="note">Temporary gloss, slickness, and short-term paint protection.</p>
+            <a class="button" href="/aircraft-ceramic-protection/">Spray protection information</a>
+          </article>
+        </div>
+      </section>
+
+      <section class="card" id="gallery" aria-labelledby="gallery-heading">
+        <h2 id="gallery-heading">Work Gallery</h2>
+        <div class="gallery">
+          <picture>
+            <source type="image/avif" srcset="/images/yellow-black-aircraft-exterior-320.avif 320w, /images/yellow-black-aircraft-exterior-500.avif 500w" sizes="(max-width: 800px) calc(100vw - 36px), 340px">
+            <source type="image/webp" srcset="/images/yellow-black-aircraft-exterior-320.webp 320w, /images/yellow-black-aircraft-exterior-500.webp 500w" sizes="(max-width: 800px) calc(100vw - 36px), 340px">
+            <img src="/images/yellow-black-aircraft-exterior.jpg" srcset="/images/yellow-black-aircraft-exterior-320.jpg 320w, /images/yellow-black-aircraft-exterior-500.jpg 500w" sizes="(max-width: 800px) calc(100vw - 36px), 340px" width="500" height="333" loading="lazy" decoding="async" alt="Yellow, black, and white aircraft parked outdoors under a blue sky">
+          </picture>
+          <picture>
+            <source type="image/avif" srcset="/images/yellow-black-aircraft-hangar-side-480.avif 480w, /images/yellow-black-aircraft-hangar-side-768.avif 768w, /images/yellow-black-aircraft-hangar-side-960.avif 960w" sizes="(max-width: 800px) calc(100vw - 36px), 340px">
+            <source type="image/webp" srcset="/images/yellow-black-aircraft-hangar-side-480.webp 480w, /images/yellow-black-aircraft-hangar-side-768.webp 768w, /images/yellow-black-aircraft-hangar-side-960.webp 960w" sizes="(max-width: 800px) calc(100vw - 36px), 340px">
+            <img src="/images/yellow-black-aircraft-hangar-side.jpg" srcset="/images/yellow-black-aircraft-hangar-side-480.jpg 480w, /images/yellow-black-aircraft-hangar-side-768.jpg 768w, /images/yellow-black-aircraft-hangar-side-960.jpg 960w" sizes="(max-width: 800px) calc(100vw - 36px), 340px" width="960" height="720" loading="lazy" decoding="async" alt="Yellow, black, and white aircraft shown from the side inside a hangar">
+          </picture>
+          <picture>
+            <source type="image/avif" srcset="/images/yellow-black-aircraft-glossy-nose-480.avif 480w, /images/yellow-black-aircraft-glossy-nose-768.avif 768w, /images/yellow-black-aircraft-glossy-nose-960.avif 960w" sizes="(max-width: 800px) calc(100vw - 36px), 340px">
+            <source type="image/webp" srcset="/images/yellow-black-aircraft-glossy-nose-480.webp 480w, /images/yellow-black-aircraft-glossy-nose-768.webp 768w, /images/yellow-black-aircraft-glossy-nose-960.webp 960w" sizes="(max-width: 800px) calc(100vw - 36px), 340px">
+            <img src="/images/yellow-black-aircraft-glossy-nose.jpg" srcset="/images/yellow-black-aircraft-glossy-nose-480.jpg 480w, /images/yellow-black-aircraft-glossy-nose-768.jpg 768w, /images/yellow-black-aircraft-glossy-nose-960.jpg 960w" sizes="(max-width: 800px) calc(100vw - 36px), 340px" width="960" height="720" loading="lazy" decoding="async" alt="Glossy black and yellow aircraft nose and wings inside a hangar">
+          </picture>
+        </div>
+      </section>
+
+      <section class="card" id="quote" aria-labelledby="quote-heading">
+        <h2 id="quote-heading">Request a Quote</h2>
+        <p class="note">Call or text with your aircraft category, aircraft condition, proposed work location, and requested service. At least 24 hours of advance notice is preferred.</p>
+        <div class="button-row">
+          <a class="button" href="tel:+14179890976">Call 417-989-0976</a>
+          <a class="button secondary" href="sms:+14179890976">Text for a Quote</a>
+        </div>
+      </section>
+
+      <section class="card" aria-labelledby="faq-heading">
+        <h2 id="faq-heading">Frequently Asked Questions</h2>
+        <h3>Where is Ozark Aircraft Wash based?</h3>
+        <p>Ozark Aircraft Wash is a mobile aircraft washing and appearance-care business based in Ava, Missouri.</p>
+        <h3>Do you bring water and equipment?</h3>
+        <p>Yes. We arrive with our own aircraft-cleaning equipment, products, and water supply.</p>
+        <h3>Can service be performed at an airport or hangar?</h3>
+        <p>Mobile aircraft washing may be available at airports and private aviation facilities where access and local rules permit. Customers are responsible for arranging the required aircraft and facility access.</p>
+        <h3>Do you travel outside Southwest Missouri?</h3>
+        <p>Longer-distance appointments are considered individually. Travel charges may apply based on distance and scheduling.</p>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div>
+        <p><strong>Ozark Aircraft Wash</strong></p>
+        <p>Mobile aircraft washing based in Ava, Missouri.</p>
+        <p><a href="tel:+14179890976">417-989-0976</a></p>
+      </div>
+      <nav aria-label="Footer navigation">
+        <ul class="footer-links">
+          <li><a href="/">Home</a></li>
+          <li><a href="/#services">Services</a></li>
+          <li><a href="/#pricing-section">Pricing</a></li>
+          <li><a href="/#gallery">Gallery</a></li>
+          <li><a href="/#quote">Quote</a></li>
+        </ul>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="/assets/js/pricing.js" defer></script>
 </body>
 </html>

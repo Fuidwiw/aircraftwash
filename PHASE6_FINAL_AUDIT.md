@@ -4,7 +4,7 @@ Audit completed August 4, 2026, against the local static site in `C:\Projects\Ai
 
 ## Audit scope
 
-- All 45 canonical public pages in `sitemap.xml`.
+- All 46 canonical public pages in `sitemap.xml`, including the later conversion-redesign aviation-partner page.
 - Branded `404.html` and the retired full-ceramic fallback.
 - Primary/footer navigation, hub/child relationships, internal links, fragments, phone/SMS actions, metadata, JSON-LD, pricing, factual claims, images, accessibility, responsive behavior, performance, sitemap, robots, CNAME, scripts, documentation, and GitHub Pages constraints.
 - All 18 records in `data/airports.json`, rechecked against their stored official sources and current official corroboration where a stored dynamic source could not be fetched directly.
@@ -45,12 +45,12 @@ The machine-readable route details are in `FINAL_ROUTE_INVENTORY.md`.
 
 ## Route, navigation, and link results
 
-- 45 canonical indexable pages, one branded noindex 404, and one noindex retired fallback were found; no duplicate route or draft sitemap entry was found.
+- 46 canonical indexable pages, one branded noindex 404, and one noindex retired fallback were found; no duplicate route or draft sitemap entry was found.
 - Every canonical page has an incoming internal link. The observed incoming-link minimum is one; major hubs receive substantially more.
 - Every hub links to all children, and children link back to their hubs.
 - Homepage links to Services, Aircraft, Airports, and Resources; all service/airport/aircraft/resource cross-link requirements pass.
 - No broken internal link, missing fragment, active link to the retired service, unpublished airport/aircraft route, inconsistent internal trailing slash, or excessive global page list was found.
-- All 47 documents contain the consistent eight-item primary and footer navigation: Home, Services, Aircraft, Airports, Resources, Pricing, Gallery, and Quote.
+- All 48 documents contain the current shared navigation, footer, accessible mobile menu, and fixed mobile Call / Text / Get Quote actions.
 
 ## Duplicate-content results
 
@@ -61,7 +61,7 @@ The machine-readable route details are in `FINAL_ROUTE_INVENTORY.md`.
 
 ## Metadata results
 
-- All 45 canonical pages have a unique title and description, the apex canonical, `index, follow`, complete Open Graph/Twitter metadata, one H1, and `lang="en"`.
+- All 46 canonical pages have a unique title and description, the apex canonical, `index, follow`, complete Open Graph/Twitter metadata, one H1, and `lang="en"`.
 - `404.html` is `noindex, follow`; the retired fallback is `noindex, follow` and canonicals to the current spray ceramic page.
 - No canonical points to the wrong page, and no local metadata uses the retired Springfield/Branson-only positioning.
 - The longest natural titles belong to long official airport names; they were reviewed and retained because they are accurate and not stuffed.
@@ -146,6 +146,6 @@ JPEG fallback image set: 788.6 KiB / 900 KiB
 2. Approve and perform the commit/push/deployment workflow in `FINAL_DEPLOYMENT_CHECKLIST.md`.
 3. Confirm the GitHub Pages publishing source, custom domain, Enforce HTTPS setting, and successful build.
 4. Verify the live old LXT/full-ceramic/old-positioning copy is gone immediately after deployment.
-5. Recheck apex/`www` HTTP-to-HTTPS redirects, the live 404 response behavior, all 45 sitemap routes, and the retired ceramic fallback.
+5. Recheck apex/`www` HTTP-to-HTTPS redirects, the live 404 response behavior, all 46 sitemap routes, the aviation-partner page, and the retired ceramic fallback.
 6. Submit the sitemap/request indexing only through an owner-controlled Search Console property; no ownership is assumed here.
 7. Decide later whether to remove unused legacy optimized derivatives or add a proxy/CDN path-specific ceramic 301. Neither is required for the current static-page payload or Phase 6 readiness.

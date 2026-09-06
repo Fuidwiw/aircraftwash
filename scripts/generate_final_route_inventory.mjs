@@ -98,7 +98,7 @@ const rows = documents.map(({ route, file, sitemap: inSitemap }) => {
 
 const output = `# Final Route Inventory
 
-Generated from the current static HTML and \`sitemap.xml\` on August 4, 2026. The inventory covers all 45 canonical public pages, the branded 404 document, and the retired full-ceramic fallback.
+Generated from the current static HTML and \`sitemap.xml\` on September 5, 2026. The inventory covers all 46 canonical public pages, the branded 404 document, and the retired full-ceramic fallback.
 
 | Route | Page type | Canonical URL | In sitemap | Robots | H1 | Title | Meta description | Main words | Primary internal links |
 |---|---|---|---|---|---|---|---|---:|---|

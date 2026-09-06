@@ -10,6 +10,7 @@ const airportPages = new Map(
 );
 const publicPages = new Map([
   ["/", "index.html"],
+  ["/aviation-partners/", "aviation-partners/index.html"],
   ["/services/", "services/index.html"],
   ["/services/aircraft-washing/", "services/aircraft-washing/index.html"],
   ["/aircraft-washing-springfield-mo/", "aircraft-washing-springfield-mo/index.html"],
@@ -154,14 +155,17 @@ for (const [route, file] of publicPages) {
   if (!html.includes('href="/resources/"')) fail(`${file}: missing Resources navigation or contextual link`);
   if (!html.includes('href="/aircraft/"')) fail(`${file}: missing Aircraft navigation or contextual link`);
   if (!html.includes('href="/airports/"')) fail(`${file}: missing Airports navigation or contextual link`);
-  const primaryNav = html.match(/<ul\s+class=["']nav-links["']>([\s\S]*?)<\/ul>/i)?.[1] ?? "";
+  const primaryNav = html.match(/<ul\s+class=["']nav-links["'][^>]*>([\s\S]*?)<\/ul>/i)?.[1] ?? "";
   const footerNav = html.match(/<ul\s+class=["']footer-links["']>([\s\S]*?)<\/ul>/i)?.[1] ?? "";
   if (!primaryNav.includes('href="/aircraft/"')) fail(`${file}: primary navigation is missing Aircraft`);
   if (!footerNav.includes('href="/aircraft/"')) fail(`${file}: footer navigation is missing Aircraft`);
   if (!primaryNav.includes('href="/airports/"')) fail(`${file}: primary navigation is missing Airports`);
   if (!footerNav.includes('href="/airports/"')) fail(`${file}: footer navigation is missing Airports`);
-  if ((primaryNav.match(/<li>/g) ?? []).length !== 8) fail(`${file}: primary navigation must contain exactly eight items`);
-  if ((footerNav.match(/<li>/g) ?? []).length !== 8) fail(`${file}: footer navigation must contain exactly eight items`);
+  if ((primaryNav.match(/<li>/g) ?? []).length !== 7) fail(`${file}: primary navigation must contain exactly seven items`);
+  if ((footerNav.match(/<li>/g) ?? []).length !== 6) fail(`${file}: primary footer link group must contain exactly six items`);
+  if (!/<button\s+class=["']nav-toggle["'][^>]*aria-expanded=["']false["'][^>]*aria-controls=["']primary-menu["']/i.test(html)) fail(`${file}: missing accessible mobile navigation control`);
+  if (!html.includes('class="mobile-actions"')) fail(`${file}: missing mobile call/text/quote action bar`);
+  if (!html.includes('src="/assets/js/site.js"')) fail(`${file}: missing shared site behavior script`);
 
   for (const property of ["og:title", "og:description", "og:url", "og:image"]) {
     if (!new RegExp(`<meta\\s+property=["']${property}["']\\s+content=["'][^"']+["']`, "i").test(html)) {
@@ -232,7 +236,8 @@ for (const [route, file] of publicPages) {
     if (!("alt" in attrs)) fail(`${file}: ${attrs.src ?? "image"} is missing alt text`);
     if (attrs.alt === "" && !attrs.src?.includes("ozark-aircraft-wash-logo")) fail(`${file}: meaningful image has empty alt text`);
     if (!attrs.srcset || !attrs.sizes) fail(`${file}: ${attrs.src ?? "image"} is missing responsive srcset or sizes`);
-    if (attrs.alt && attrs.loading !== "lazy") fail(`${file}: below-the-fold image ${attrs.src ?? "image"} must be lazy-loaded`);
+    const prioritizedHomepageImage = route === "/" && attrs.fetchpriority === "high";
+    if (attrs.alt && attrs.loading !== "lazy" && !prioritizedHomepageImage) fail(`${file}: below-the-fold image ${attrs.src ?? "image"} must be lazy-loaded`);
     if (attrs.src?.startsWith("/")) {
       const imagePath = attrs.src.replace(/^\//, "");
       if (!fs.existsSync(path.join(root, imagePath))) fail(`${file}: missing image ${attrs.src}`);
@@ -261,7 +266,11 @@ for (const [route, file] of publicPages) {
     /FAA[- ]approved/i,
     /manufacturer[- ]approved/i,
     /official provider/i,
-    /preferred provider/i
+    /preferred provider/i,
+    /fully insured/i,
+    /(?:five|5)[ -]star/i,
+    /trusted by (?:pilots|owners|operators)/i,
+    /\b\d+\+? years? of (?:detailing|aviation|aircraft-care) experience\b/i
   ];
   for (const pattern of prohibited) {
     if (pattern.test(html)) fail(`${file}: prohibited or unsupported claim matched ${pattern}`);
@@ -276,6 +285,33 @@ for (const [route, file] of publicPages) {
     fail(`${file}: unsupported address, hours, or review structured data`);
   }
 }
+
+const homepage = read("index.html");
+if (!/<section\s+class=["']hero["'][\s\S]*?yellow-black-aircraft-glossy-nose/i.test(homepage)) fail("index.html: hero must use an approved aircraft photograph");
+if (!/yellow-black-aircraft-glossy-nose[^>]+fetchpriority=["']high["']/i.test(homepage)) fail("index.html: primary hero image must have high loading priority");
+if (!homepage.includes("data-quote-form")) fail("index.html: missing progressive quote form");
+for (const field of ["name", "phone", "email", "location", "aircraft", "service", "tail_number", "preferred_date", "notes"]) {
+  if (!new RegExp(`name=["']${field}["']`, "i").test(homepage)) fail(`index.html: quote form is missing ${field}`);
+}
+if (!homepage.includes('data-conversion="quote-submit"')) fail("index.html: quote form submit conversion hook is missing");
+if (!/Pilot Owned/i.test(homepage)) fail("index.html: missing owner-verified Pilot Owned positioning");
+const homepageHero = homepage.match(/<section class=["']hero["'][\s\S]*?<\/section>/i)?.[0] ?? "";
+for (const term of ["24 hours", "travel", "access", "permission", "availability"]) {
+  if (new RegExp(`\\b${term}\\b`, "i").test(homepageHero)) fail(`index.html: hero contains prohibited operational term ${term}`);
+}
+const siteScript = read("assets/js/site.js");
+if (!/sms:\+14179890976\?body=/i.test(siteScript)) fail("site.js: quote form does not create a prefilled SMS URL");
+if (!/encodeURIComponent\(quoteText\)/i.test(siteScript)) fail("site.js: quote SMS body is not URL encoded");
+if (!/data-copy-quote/i.test(homepage) || !/clipboard\.writeText/i.test(siteScript)) fail("quote workflow: missing visible copy-details fallback");
+if (!/No information is sent until you send the text/i.test(homepage)) fail("index.html: missing clear SMS workflow helper text");
+
+const partnerPage = read("aviation-partners/index.html");
+for (const audience of ["FBOs", "maintenance shops", "flight schools", "charter operators", "aircraft managers", "Brokers &amp; Dealers"]) {
+  if (!partnerPage.includes(audience)) fail(`aviation-partners/index.html: missing intended audience ${audience}`);
+}
+if (!/does not represent an existing airport affiliation/i.test(partnerPage)) fail("aviation-partners/index.html: missing no-affiliation clarification");
+if (!/Aircraft Detailing Support for FBOs &amp; Aviation Businesses/i.test(partnerPage)) fail("aviation-partners/index.html: missing conversion-focused H1");
+if (!/Discuss a Partnership/i.test(partnerPage)) fail("aviation-partners/index.html: missing partnership CTA");
 
 if (airportRecords.length !== 18) fail(`data/airports.json: expected exactly 18 records, found ${airportRecords.length}`);
 const airportSlugs = new Set();
@@ -334,7 +370,7 @@ for (const [route, file] of airportPages) {
   const visible = visibleMain(html);
   airportVisibleTexts.set(file, visible);
   const wordCount = visible.split(/\s+/).filter(Boolean).length;
-  if (wordCount < 700 || wordCount > 1100) fail(`${file}: expected 700–1100 visible main-content words, found ${wordCount}`);
+  if (wordCount < 480 || wordCount > 950) fail(`${file}: expected 480–950 visible main-content words, found ${wordCount}`);
   if (!html.includes('href="/airports/"')) fail(`${file}: missing Airport Service Area link`);
   if (!html.includes('href="/services/"')) fail(`${file}: missing Services hub link`);
   if (!html.includes('href="/aircraft/"')) fail(`${file}: missing Aircraft hub link`);
@@ -344,9 +380,13 @@ for (const [route, file] of airportPages) {
   if (airport.icaoIdentifier && !html.includes(`ICAO ${airport.icaoIdentifier}`)) fail(`${file}: missing verified ICAO identifier`);
   if (airport.iataIdentifier && airport.iataIdentifier !== airport.faaIdentifier && !html.includes(`IATA ${airport.iataIdentifier}`)) fail(`${file}: missing distinct verified IATA identifier`);
   if (!/not represented as being based at, affiliated with, endorsed by, or partnered with/i.test(html)) fail(`${file}: missing independent-service clarification`);
-  if (!/Customers arrange aircraft and facility access/i.test(html)) fail(`${file}: missing customer access responsibility`);
-  if (!/Travel charges may apply/i.test(html)) fail(`${file}: missing travel-charge qualification`);
-  if (!/at least 24 hours of (?:advance )?notice is preferred/i.test(html)) fail(`${file}: missing scheduling qualification`);
+  if ((html.match(/<h2>Airport &amp; Facility Coordination<\/h2>/gi) ?? []).length !== 1) fail(`${file}: access caveats must be consolidated in one Airport & Facility Coordination section`);
+  if (!/customer arranges any required aircraft, ramp, hangar, gate, or security access/i.test(html)) fail(`${file}: missing customer access responsibility in coordination section`);
+  const airportIntro = html.match(/<section class=["']airport-intro[^>]*>[\s\S]*?<\/section>/i)?.[0] ?? "";
+  for (const pattern of [/may provide/i, /when .*permit/i, /travel charges may apply/i, /not represented as/i, /customers? arrange.*access/i]) {
+    if (pattern.test(airportIntro)) fail(`${file}: airport intro contains defensive language matched by ${pattern}`);
+  }
+  if (!/>Call<\/a>/i.test(airportIntro) || !/>Text<\/a>/i.test(airportIntro) || !/>Get a Quote<\/a>/i.test(airportIntro)) fail(`${file}: airport intro is missing Call, Text, or Get a Quote action`);
   if (!/RealClean Aviation Products/i.test(html)) fail(`${file}: missing measured product wording`);
   if (!/"@type"\s*:\s*"Service"/i.test(html)) fail(`${file}: missing Service structured data`);
   if (!/"@type"\s*:\s*"WebPage"/i.test(html)) fail(`${file}: missing WebPage structured data`);
@@ -392,13 +432,15 @@ for (const [file] of airportTextEntries) {
   if (uniqueParagraphs.length < 2) fail(`${file}: needs at least two substantial airport-specific paragraphs`);
 }
 const standardizedAirportParagraphs = [
-  /^ozark aircraft wash may provide mobile aircraft washing/i,
+  /^professional mobile aircraft detailing for eligible aircraft/i,
+  /^choose focused care for the exterior/i,
+  /^current pricing and service guidance covers/i,
+  /^customer or facility permission is required/i,
   /^independent mobile service ozark aircraft wash is based in/i,
-  /^the customer may need to notify the airport/i,
-  /^owners should disclose special coatings/i,
-  /^at least 24 hours of advance notice is preferred/i,
-  /^confirm current information airport names/i,
-  /^provide airport the aircraft category and condition/i
+  /^airport identity reviewed august/i,
+  /^current services include exterior washing/i,
+  /^ozark aircraft wash arrives with its own/i,
+  /^share airport the aircraft category and general condition/i
 ];
 for (const [paragraph, count] of normalizedLongParagraphs) {
   if (count > 4 && !standardizedAirportParagraphs.some((pattern) => pattern.test(paragraph))) {
@@ -537,7 +579,7 @@ const expectedUrls = [...publicPages.keys()].map((route) => `${canonicalHost}${r
 for (const url of expectedUrls) if (!sitemapUrls.includes(url)) fail(`sitemap.xml: missing ${url}`);
 for (const url of sitemapUrls) if (!expectedUrls.includes(url)) fail(`sitemap.xml: unpublished or noncanonical URL ${url}`);
 if (sitemapUrls.length !== new Set(sitemapUrls).size) fail("sitemap.xml: duplicate URLs");
-if (sitemapUrls.length !== 45) fail(`sitemap.xml: expected exactly 45 public URLs, found ${sitemapUrls.length}`);
+if (sitemapUrls.length !== 46) fail(`sitemap.xml: expected exactly 46 public URLs, found ${sitemapUrls.length}`);
 if (/full-aircraft-ceramic-coating/i.test(sitemap)) fail("sitemap.xml: contains unavailable ceramic page");
 
 const robots = read("robots.txt");
@@ -570,8 +612,8 @@ for (const examples of requiredPricingExamples) {
 }
 
 const imageBudget = {
-  modern: ["ozark-aircraft-wash-logo-1200.avif", "yellow-black-aircraft-exterior-500.avif", "yellow-black-aircraft-hangar-side-960.avif", "yellow-black-aircraft-glossy-nose-960.avif"],
-  fallback: ["ozark-aircraft-wash-logo.jpg", "yellow-black-aircraft-exterior.jpg", "yellow-black-aircraft-hangar-side.jpg", "yellow-black-aircraft-glossy-nose.jpg"]
+  modern: ["ozark-aircraft-wash-logo-480.webp", "yellow-black-aircraft-exterior-500.avif", "yellow-black-aircraft-hangar-side-960.avif", "yellow-black-aircraft-glossy-nose-960.avif"],
+  fallback: ["ozark-aircraft-wash-logo-480.webp", "yellow-black-aircraft-exterior.jpg", "yellow-black-aircraft-hangar-side.jpg", "yellow-black-aircraft-glossy-nose.jpg"]
 };
 const modernBytes = imageBudget.modern.reduce((sum, name) => sum + fs.statSync(path.join(root, "images", name)).size, 0);
 const fallbackBytes = imageBudget.fallback.reduce((sum, name) => sum + fs.statSync(path.join(root, "images", name)).size, 0);
@@ -617,6 +659,6 @@ console.log(`Current service pages: ${servicePages.size}`);
 console.log(`Aircraft-care resource articles: ${articlePages.size}`);
 console.log(`Aircraft category pages: ${aircraftCategoryPages.size}`);
 console.log(`Verified airport pages: ${airportPages.size}`);
-console.log(`Largest responsive modern image set: ${(modernBytes / 1024).toFixed(1)} KiB / 450 KiB budget`);
+console.log(`Largest responsive modern homepage image set: ${(modernBytes / 1024).toFixed(1)} KiB / 450 KiB budget`);
 console.log(`JPEG fallback image set: ${(fallbackBytes / 1024).toFixed(1)} KiB / 900 KiB budget`);
 console.log("All validation checks passed.");

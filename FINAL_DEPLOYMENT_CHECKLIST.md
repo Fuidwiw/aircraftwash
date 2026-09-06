@@ -43,7 +43,7 @@ Use this checklist only after the owner approves the complete local Phase 1–6 
 
 7. **Confirm the GitHub Pages build.** In repository **Settings → Pages**, verify the publishing branch/folder, custom domain `ozarkaircraftwash.com`, and **Enforce HTTPS**. Confirm the Pages build completes successfully. These settings are not stored in this working tree, and Phase 6 did not change them.
 
-8. **Check live routes.** Verify the apex homepage, all 45 sitemap URLs, `robots.txt`, `sitemap.xml`, an unknown URL, and the retired ceramic fallback. Confirm the old production copy is gone—especially the LXT listing, active full-ceramic promotion, old Springfield/Branson-only positioning, and unsupported product wording. Also verify HTTP and `www` requests redirect to the equivalent apex HTTPS path.
+8. **Check live routes.** Verify the apex homepage, all 46 sitemap URLs, `robots.txt`, `sitemap.xml`, an unknown URL, the aviation-partner page, and the retired ceramic fallback. Confirm the old production copy is gone—especially the LXT listing, active full-ceramic promotion, old Springfield/Branson-only positioning, and unsupported product wording. Also verify HTTP and `www` requests redirect to the equivalent apex HTTPS path.
 
 9. **Submit the sitemap.** In the owner-controlled Google Search Console property for the canonical apex host, submit `https://ozarkaircraftwash.com/sitemap.xml`. Do not assume Search Console ownership or create a new property without owner authorization.
 

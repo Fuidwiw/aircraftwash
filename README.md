@@ -4,7 +4,8 @@ This repository contains the static website for Ozark Aircraft Wash. It uses pla
 
 ## Project structure
 
-- `index.html` — homepage, current service summary, pricing, gallery, and quote actions.
+- `index.html` — conversion-focused homepage, current service summary, pricing, gallery, and progressive quote form.
+- `aviation-partners/` — factual inquiry page for aviation organizations; it does not claim an existing partnership or affiliation.
 - `services/` — current services hub plus aircraft washing, wet washing, belly cleaning, bug removal, interior cleaning, and monthly-maintenance pages.
 - `aircraft-washing-springfield-mo/` and `aircraft-washing-branson-mo/` — current regional service-information pages.
 - `airports/` — Airport Service Area hub plus 18 verified airport-specific planning pages.
@@ -12,7 +13,8 @@ This repository contains the static website for Ozark Aircraft Wash. It uses pla
 - `waterless-aircraft-wash/` and `aircraft-ceramic-protection/` — current service pages.
 - `full-aircraft-ceramic-coating/` — retired-service fallback notice; not an available service page.
 - `404.html` — branded not-found page.
-- `assets/css/site.css` — shared layout, colors, responsive behavior, and accessibility styles.
+- `assets/css/site.css` — shared premium visual system, layout, responsive behavior, mobile action bar, and accessibility styles.
+- `assets/js/site.js` — accessible mobile navigation and the honest no-backend quote-form fallback.
 - `assets/js/pricing.js` — all interactive aircraft-category prices.
 - `images/` — optimized public images and responsive derivatives.
 - `images/source/` — untouched source images; these are archived and are not referenced by public HTML.
@@ -20,6 +22,7 @@ This repository contains the static website for Ozark Aircraft Wash. It uses pla
 - `scripts/optimize_images.py` — repeatable image conversion helper.
 - `scripts/validate.mjs` — dependency-free site validation.
 - `scripts/serve.mjs` — dependency-free local preview server.
+- `scripts/apply_conversion_chrome.mjs` — reapplies the shared header, footer, mobile actions, conversion hooks, and shared script to static HTML after page generation.
 - `sitemap.xml`, `robots.txt`, and `CNAME` — search and GitHub Pages domain files.
 - `PHASE1_CLAIMS_REPORT.md` — factual wording changed during Phase 1.
 - `PHASE2_SERVICES_REPORT.md` — Phase 2 page, navigation, linking, schema, sitemap, validation, and image summary.
@@ -50,7 +53,7 @@ This repository contains the static website for Ozark Aircraft Wash. It uses pla
 
 - `PHASE6_FINAL_AUDIT.md` records the final technical, factual, content, accessibility, performance, and deployment-readiness audit.
 - `FINAL_DEPLOYMENT_CHECKLIST.md` is the operator checklist for repository review, GitHub Pages publication, production verification, and post-launch monitoring.
-- `FINAL_ROUTE_INVENTORY.md` inventories all 45 canonical public pages plus the branded 404 and retired-service fallback.
+- `FINAL_ROUTE_INVENTORY.md` inventories all 46 canonical public pages plus the branded 404 and retired-service fallback.
 - `scripts/generate_final_route_inventory.mjs` regenerates the route inventory directly from the current HTML and sitemap.
 
 ## Edit website text
@@ -67,6 +70,12 @@ Business facts that require confirmation before publication include:
 - Any claim that full professional ceramic coating is currently offered.
 
 Do not create an additional location page until the location is separately verified and explicitly approved. Airport data lives in `data/airports.json`; a record needs an official source, verification date, approved identifiers and slug, nearby links, and `published: true` before its page, navigation links, or sitemap entry may be generated.
+
+## Quote form and conversion hooks
+
+The homepage quote form is frontend-only. It uses native required-field and email validation, then builds a URL-encoded message and opens `sms:+14179890976` with the entered quote details (excluding email). No information is sent until the visitor sends the text from their messaging app. A visible fallback lets the visitor copy the quote details, call, or open a plain text message if prefilled SMS handling is unavailable on the device.
+
+Conversion-ready elements use stable `data-conversion` values: `phone`, `text`, `quote-cta`, `quote-submit`, and `partnership-cta`. No analytics package is installed. These attributes are implementation hooks only and do not transmit data.
 
 ## Edit service copy and internal links
 
@@ -90,7 +99,7 @@ Airport pages contain marketing and appointment-planning information, not naviga
 2. Update `data/airports.json`, including `verificationSource`, `verificationDate`, naming notes, nearby links, and qualitative travel context.
 3. Preserve `published: true` only when owner approval and verification are complete.
 4. Update the maintained airport-specific profile in `scripts/generate_airport_pages.mjs` without copying another page's local paragraphs.
-5. Run `node scripts/generate_airport_pages.mjs` and `node scripts/generate_phase5_docs.mjs`.
+5. Run `npm run build` to regenerate airport pages, reapply shared site chrome, and refresh the Phase 5 and final route documentation.
 6. Review the generated diff, metadata, visible name/identifiers, access and affiliation wording, links, and unique local content.
 7. Add or change the sitemap URL only after the page passes `npm run validate`.
 
@@ -145,7 +154,7 @@ Image regeneration additionally requires Python with Pillow 12 or later and AVIF
 
 The validator enforces these largest-responsive-set budgets:
 
-- Modern AVIF set: at most 450 KiB.
+- Modern responsive set (AVIF photographs plus the compact WebP header mark): at most 450 KiB.
 - JPEG fallback set: at most 900 KiB.
 
 The archived `images/source/` folder is intentionally excluded from homepage payload calculations.
@@ -155,11 +164,13 @@ The archived `images/source/` folder is intentionally excluded from homepage pay
 Node.js is the only tool required for validation and preview. No `npm install` step is needed.
 
 ```powershell
+npm run build
 npm run validate
 npm test
 npm run serve
 ```
 
+- `npm run build` regenerates the registry-controlled airport pages, reapplies shared navigation/footer markup, and refreshes generated documentation. It does not install dependencies or introduce a framework.
 - `npm run validate` and `npm test` run the same full static-site validation.
 - `npm run serve` starts `http://127.0.0.1:8000` and serves directory indexes plus the branded 404 page.
 - Stop the preview server with `Ctrl+C`.
@@ -170,7 +181,9 @@ Phase 3 checks also cover the Resource hub, seven article routes, exactly 20 sit
 
 Phase 4 checks cover the Aircraft hub, five category routes, Aircraft navigation, category/service/resource links, call and SMS actions, breadcrumbs, Service/WebPage schema, visible FAQs, unchanged pricing examples and amounts, and manufacturer/model and technical-claim guardrails.
 
-Phase 5 checks cover the Airport hub, exactly 18 registry-controlled airport routes, exactly 45 sitemap URLs, eight-item navigation, 700–1100 airport-page words, verified identifiers and dates, required access/travel/independence wording, related service/resource/nearby links, call and SMS actions, FAQ and schema requirements, unapproved-route exclusions, operational-data exclusions, and duplicate-content similarity safeguards.
+Phase 5 checks cover the Airport hub, exactly 18 registry-controlled airport routes, verified identifiers and dates, one consolidated Airport & Facility Coordination section per detail page, sales-focused opening copy, related service/resource/nearby links, call/SMS/quote actions, FAQ and schema requirements, unapproved-route exclusions, operational-data exclusions, and duplicate-content similarity safeguards.
+
+The September 2026 redesign checks also cover exactly 46 sitemap URLs, seven primary navigation actions, the mobile menu control, fixed mobile call/text/quote actions, shared behavior script, approved aircraft-photo hero, owner-verified Pilot Owned positioning, a disclaimer-free hero, the encoded prefilled-SMS quote workflow with copy fallback, conversion data hooks, and aviation-partner claim limits.
 
 Phase 6 adds visible/schema breadcrumb parity, contextual Aircraft-hub links on service pages, and a repeated-paragraph safeguard that permits only necessary standardized airport notices while catching excessive copied marketing copy.
 
@@ -185,9 +198,9 @@ For Phase 2, manually preview these route groups after validation:
 
 Check at approximately 320, 390, 768, and 1440 CSS pixels. Confirm that service cards, FAQ disclosures, related-service links, images, buttons, and sticky navigation remain usable without horizontal scrolling.
 
-Also preview `/resources/` and every article listed in `PHASE3_CONTENT_MATRIX.md`. Confirm resource cards, comparison layouts, checklists, reviewed dates, FAQ controls, related links, and the current eight-item navigation at each target width.
+Also preview `/resources/` and every article listed in `PHASE3_CONTENT_MATRIX.md`. Confirm resource cards, comparison layouts, checklists, reviewed dates, FAQ controls, related links, and the current compact navigation at each target width.
 
-Preview `/aircraft/` and every category listed in `PHASE4_CONTENT_MATRIX.md` at the same widths. Confirm the eight-item navigation wraps cleanly, category cards and related links work, FAQs use native disclosures, and category examples remain qualified as pricing guidance rather than expertise or endorsement claims.
+Preview `/aircraft/` and every category listed in `PHASE4_CONTENT_MATRIX.md` at the same widths. Confirm the mobile menu opens, closes, and returns focus correctly; category cards and related links work; FAQs use native disclosures; and category examples remain qualified as pricing guidance rather than expertise or endorsement claims.
 
 Preview `/airports/`, every route in `PHASE5_CONTENT_MATRIX.md`, both regional pages, and representative service/resource/aircraft pages at 320, 390, 768, and 1440 CSS pixels. Confirm airport cards and nearby links work, identifiers remain readable, FAQs use native disclosures, call/SMS actions are tappable, images preserve proportions, and no horizontal overflow, affiliation claim, guaranteed access claim, or operational airport data appears.
 
@@ -262,6 +275,6 @@ Production response headers and `CNAME` indicate GitHub Pages, but the configure
 3. Run `npm run serve` and manually check every public page plus an unknown URL.
 4. Review `git status --short` and `git diff`; preserve unrelated work.
 5. Commit the intended static files to the branch/folder confirmed in Pages settings.
-6. After deployment, verify the canonical redirects, all 45 sitemap URLs, `robots.txt`, the 404 response, the airport hub and representative airport pages, and the ceramic fallback.
+6. After deployment, verify the canonical redirects, all 46 sitemap URLs, `robots.txt`, the 404 response, the airport hub and representative airport pages, the aviation-partner page, and the ceramic fallback.
 
 Do not change DNS or assume a different publishing branch solely from this README.

@@ -1,6 +1,6 @@
 # Approved image library inventory
 
-Date reviewed: August 3, 2026
+Date reviewed: September 5, 2026
 
 The existing `images/source/` directory is the approved visual source library for this phase. No stock, downloaded, or AI-generated images were added. The four originals remain unchanged, and optimized public copies are stored separately in `images/`.
 
@@ -19,7 +19,7 @@ No aircraft model, airport, owner, customer, or location is inferred from these 
 
 | Page | Placement | Original used | Optimized files | Alt treatment |
 |---|---|---|---|---|
-| Homepage | Hero background | `hero-aircraft.jpg` | `ozark-aircraft-wash-logo` at 480, 768, and 1200 pixels in AVIF, WebP, and JPEG, plus JPEG fallback | Empty alt because the illustration is decorative behind the page heading; the visible business name is already text on the page |
+| Homepage | Primary photo hero | `aircraft-3.jpg` | `yellow-black-aircraft-glossy-nose` at 480, 768, and 960 pixels in AVIF, WebP, and JPEG, plus JPEG fallback | Describes only the visible glossy nose, aircraft colors, wings, and hangar; it does not identify a model or location |
 | Homepage | Gallery image 1 | `aircraft-1.jpg` | `yellow-black-aircraft-exterior` at 320 and 500 pixels in AVIF, WebP, and JPEG, plus JPEG fallback | Describes the visible aircraft colors and outdoor sky only |
 | Homepage | Gallery image 2 | `aircraft-2.jpg` | `yellow-black-aircraft-hangar-side` at 480, 768, and 960 pixels in AVIF, WebP, and JPEG, plus JPEG fallback | Describes the visible aircraft colors, side view, and hangar only |
 | Homepage | Gallery image 3 | `aircraft-3.jpg` | `yellow-black-aircraft-glossy-nose` at 480, 768, and 960 pixels in AVIF, WebP, and JPEG, plus JPEG fallback | Describes the visible glossy nose, colors, wings, and hangar only |
@@ -35,7 +35,19 @@ The exterior photo is reused once because the approved library contains only thr
 
 The descriptive stems above are the active public files. Earlier Phase 1 generic derivatives (`hero-aircraft*`, `aircraft-1*`, `aircraft-2*`, and `aircraft-3*` in the root `images/` directory) remain in place but are no longer referenced by public HTML. They are generated copies, not additional source photographs. Originals are only the four files under `images/source/`.
 
-Every active derivative preserves the original aspect ratio. Site CSS uses `height: auto` and does not use `object-fit: cover`, hover scaling, or color filters on photographs. Below-the-fold placements are lazy-loaded and include explicit intrinsic dimensions, `srcset`, and `sizes`.
+Every active derivative preserves the original aspect ratio. The homepage photo hero uses a responsive full-bleed presentation with `object-fit: cover`; the source file itself is not cropped or altered, and mobile positioning is checked so markings are not emphasized. Content photos use `height: auto`. Below-the-fold placements are lazy-loaded and include explicit intrinsic dimensions, `srcset`, and `sizes`; the likely homepage LCP image is intentionally eager and has high fetch priority.
+
+## September 2026 conversion redesign placements
+
+No new image was created, downloaded, deleted, color-adjusted, or cropped during the conversion redesign. The approved library remains the only visual source.
+
+| Page | Placement | Original used | Optimized display files | Notes |
+|---|---|---|---|---|
+| Homepage | Photo hero and gallery image 3 | `aircraft-3.jpg` | `yellow-black-aircraft-glossy-nose*` | Hero is the only eager photograph and uses AVIF/WebP/JPEG responsive sources; gallery reuse is necessary because the library contains three aircraft photographs |
+| Homepage | Gallery image 1 | `aircraft-1.jpg` | `yellow-black-aircraft-exterior*` | Visible-only outdoor aircraft description |
+| Homepage | Gallery image 2 and regional-service image | `aircraft-2.jpg` | `yellow-black-aircraft-hangar-side*` | Visible-only hangar-side description; the regional placement does not identify a location |
+| Aviation Partners | Introductory image | `aircraft-2.jpg` | `yellow-black-aircraft-hangar-side*` | General aviation-business context only; no partner, airport, customer, or affiliation is claimed |
+| Sitewide header | Compact brand mark | `hero-aircraft.jpg` | `ozark-aircraft-wash-logo-480.webp` | Decorative empty alt because the adjacent brand name is visible text; fixed 44 × 44 display size |
 
 ## Phase 2 service-page placements
 

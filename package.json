@@ -4,6 +4,7 @@
   "private": true,
   "description": "Static Ozark Aircraft Wash website",
   "scripts": {
+    "build": "node scripts/generate_airport_pages.mjs && node scripts/apply_conversion_chrome.mjs && node scripts/generate_phase5_docs.mjs && node scripts/generate_final_route_inventory.mjs",
     "validate": "node scripts/validate.mjs",
     "test": "node scripts/validate.mjs",
     "serve": "node scripts/serve.mjs"
